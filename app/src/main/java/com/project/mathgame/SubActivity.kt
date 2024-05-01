@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import java.util.Locale
 import kotlin.random.Random
 
-class GameActivity : AppCompatActivity() {
+class SubActivity : AppCompatActivity() {
 
     private lateinit var score : TextView
     private lateinit var life : TextView
@@ -35,8 +35,8 @@ class GameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_game)
-        supportActionBar!!.title = "Addition"
+        setContentView(R.layout.activity_sub)
+        supportActionBar!!.title = "Subtraction"
 
         score = findViewById(R.id.score)
         life = findViewById(R.id.life)
@@ -78,7 +78,7 @@ class GameActivity : AppCompatActivity() {
 
             if (userlife == 0) {
                 Toast.makeText(applicationContext, "Game Over", Toast.LENGTH_LONG).show()
-                val intent = Intent(this@GameActivity, ResultActivity::class.java)
+                val intent = Intent(this@SubActivity, ResultActivity::class.java)
                 intent.putExtra("Score", userscore)
                 startActivity(intent)
                 finish()
@@ -94,8 +94,8 @@ class GameActivity : AppCompatActivity() {
     fun gameContinue() {
         val num1 = Random.nextInt(0, 100)
         val num2 = Random.nextInt(0, 100)
-        que.text = "$num1 + $num2"
-        correct = num1 + num2
+        que.text = "$num1 - $num2"
+        correct = num1 - num2
         startTimer()
     }
 

@@ -13,4 +13,8 @@
     <string name="life">Life :</string>
     <string name="time">Time</string>
     <string name="_60">60</string>
+    <string name="play_again">Play Again</string>
+    <string name="exit">Exit</string>
+    <string name="score_0">Score: 0</string>
+    <string name="congratulations">Congratulations</string>
 </resources>

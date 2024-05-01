@@ -25,6 +25,14 @@ class MainActivity : AppCompatActivity() {
             intent = Intent(this@MainActivity, GameActivity::class.java)
             startActivity(intent)
         }
+        sub.setOnClickListener {
+            intent = Intent(this@MainActivity, SubActivity::class.java)
+            startActivity(intent)
+        }
+        mul.setOnClickListener {
+            intent = Intent(this@MainActivity, MulActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 }
