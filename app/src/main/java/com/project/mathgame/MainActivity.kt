@@ -1,5 +1,3 @@
-@file:Suppress("DEPRECATION")
-
 package com.project.mathgame
 
 import android.annotation.SuppressLint
@@ -20,11 +18,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_splash) // Set splash screen layout
+        setContentView(R.layout.activity_splash)
+
+        supportActionBar?.hide()
 
         Handler().postDelayed({
-            setContentView(R.layout.activity_main) // Set main activity layout after delay
-            initializeViews() // Initialize views after setting the main activity layout
+            setContentView(R.layout.activity_main)
+            initializeViews()
         }, 3000)
     }
 
@@ -34,13 +34,13 @@ class MainActivity : AppCompatActivity() {
         mul = findViewById(R.id.mul)
 
         add.setOnClickListener {
-            startActivity(Intent(this@MainActivity, GameActivity::class.java))
+            startActivity(Intent(this@MainActivity, GameActivity::class.java).putExtra("type", "add"))
         }
         sub.setOnClickListener {
-            startActivity(Intent(this@MainActivity, SubActivity::class.java))
+            startActivity(Intent(this@MainActivity, GameActivity::class.java).putExtra("type", "sub"))
         }
         mul.setOnClickListener {
-            startActivity(Intent(this@MainActivity, MulActivity::class.java))
+            startActivity(Intent(this@MainActivity, GameActivity::class.java).putExtra("type", "mul"))
         }
     }
 }

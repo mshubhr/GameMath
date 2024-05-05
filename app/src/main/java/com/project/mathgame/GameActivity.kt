@@ -23,6 +23,8 @@ class GameActivity : AppCompatActivity() {
     private lateinit var ok : Button
     lateinit var next : Button
 
+    lateinit var type : String
+
     private lateinit var timer : CountDownTimer
     private val starting : Long = 20000
     var lefttime : Long = starting
@@ -36,7 +38,13 @@ class GameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_game)
-        supportActionBar!!.title = "Addition"
+
+        type = intent.getStringExtra("type").toString()
+        when (type) {
+            "add" -> supportActionBar!!.title = "Addition"
+            "sub" -> supportActionBar!!.title = "Subtraction"
+            "mul" -> supportActionBar!!.title = "Multiplication"
+        }
 
         score = findViewById(R.id.score)
         life = findViewById(R.id.life)
@@ -55,6 +63,7 @@ class GameActivity : AppCompatActivity() {
                     .show()
             }
             else {
+                ok.isClickable = false
                 pauseTimer()
                 val yourans = input.toInt()
                 if (yourans == correct) {
@@ -72,6 +81,8 @@ class GameActivity : AppCompatActivity() {
         }
 
         next.setOnClickListener {
+            ans.setText("")
+            ok.isClickable = true
             pauseTimer()
             resetTimer()
             ans.setText("")
@@ -94,8 +105,29 @@ class GameActivity : AppCompatActivity() {
     fun gameContinue() {
         val num1 = Random.nextInt(0, 100)
         val num2 = Random.nextInt(0, 100)
-        que.text = "$num1 + $num2"
-        correct = num1 + num2
+
+        if (type == "add") {
+            que.text = "$num1 + $num2"
+            correct = num1 + num2
+        }
+        else if (type == "sub") {
+            if (num1 > num2) {
+                correct = num1 - num2
+                que.text = "$num1 - $num2"
+            }
+            else {
+                correct = num2 - num1
+                que.text = "$num2 - $num1"
+            }
+        }
+        else {
+            val num3 = Random.nextInt(0, 20)
+            val num4 = Random.nextInt(0, 20)
+
+            correct = num3 * num4
+            que.text = "$num3 * $num4"
+        }
+
         startTimer()
     }
 

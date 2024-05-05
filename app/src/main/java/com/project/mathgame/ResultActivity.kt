@@ -24,7 +24,7 @@ class ResultActivity : AppCompatActivity() {
         play = findViewById(R.id.again)
         exit = findViewById(R.id.exit)
 
-        val score = intent.getIntExtra("score",0)
+        val score = intent.getIntExtra("Score",0)
         res.text = "Your score: $score"
 
         play.setOnClickListener {
